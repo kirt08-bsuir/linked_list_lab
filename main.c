@@ -18,7 +18,7 @@ int main(void) {
     LinkedList *linked_list = linked_list_initialize();
     if (!linked_list) {
         printf("Something went wrong during initialization of linked list. Try again latter.\n");
-        exit(EXIT_FAILURE);
+        // exit(EXIT_FAILURE);
     }
 
     while (1) {
@@ -50,6 +50,7 @@ int main(void) {
                 printf("4. Sort.\n");
                 printf("5. Special Function.\n");
                 printf("6. Exit.\n");
+                printf("7. Search by value.\n");
 
                 if (scanf("%d", &choice) != 1) {
                     while (getchar() != '\n'); 
@@ -61,7 +62,8 @@ int main(void) {
                 if (choice == 3) step = 30; else
                 if (choice == 4) step = 40; else
                 if (choice == 5) step = 50; else
-                if (choice == 6) exit(EXIT_SUCCESS); 
+                if (choice == 6) exit(EXIT_SUCCESS); else
+                if (choice == 7) step = 70;
                 else printf("Incorrect input. Try again.\n");
 
                 break;
@@ -71,7 +73,7 @@ int main(void) {
 
                 if (!linked_list) {
                     printf("Linked List doesn't exist.\n");
-                    exit(EXIT_FAILURE);
+                    // exit(EXIT_FAILURE);
                 }
 
                 linked_list_show(linked_list);
@@ -129,7 +131,7 @@ int main(void) {
                 res = linked_list_insert_to_head(linked_list, value_to_insert);
                 if (res == 1) {
                     printf("Something went wrong during data insertion.\n");
-                    exit(EXIT_FAILURE);
+                    // exit(EXIT_FAILURE);
                 } else printf("Data was successfully inserted.\n");
 
                 printf("Menu:\n");
@@ -167,7 +169,7 @@ int main(void) {
                 res = linked_list_insert_to_tail(linked_list, value_to_insert);
                 if (res == 1) {
                     printf("Something went wrong during data insertion.\n");
-                    exit(EXIT_FAILURE);
+                    // exit(EXIT_FAILURE);
                 } else printf("Data was successfully inserted.\n");
 
                 printf("Menu:\n");
@@ -210,13 +212,13 @@ int main(void) {
                 res = linked_list_delete_by_value(linked_list, input_value);
                 if (res == 0) {
                     printf("Value %d deleted successfully.\n", input_value);
-                } else 
-                if (res == 2) {
-                    printf("Value %d not found in the list.\n", input_value);
-                } else {
-                    printf("Something went wrong during delete element from linked list.\n");
-                    exit(EXIT_FAILURE);
                 }
+                // if (res == 2) {
+                //     printf("Value %d not found in the list.\n", input_value);
+                // } else {
+                //     printf("Something went wrong during delete element from linked list.\n");
+                //     exit(EXIT_FAILURE);
+                // }
 
                 printf("\nMenu:\n");
                 printf("1. Delete another element\n");
@@ -231,7 +233,7 @@ int main(void) {
 
                 if (choice == 1) continue; else
                 if (choice == 2) step = 10; else
-                if (choice == 4) step = 0; else
+                if (choice == 3) step = 0; else
                 printf("Incorrect input. Try again.\n");
                 break;
 
@@ -266,7 +268,7 @@ int main(void) {
                 res = linked_list_sort(linked_list, SORT_ASC);
                 if (res == 1) {
                     printf("Something went wrong during sorting linked list. Try again latter.\n");
-                    exit(EXIT_FAILURE);
+                    // exit(EXIT_FAILURE);
                 }
 
                 printf("Linked list was successfully sorted.\n");
@@ -283,7 +285,7 @@ int main(void) {
                 }
 
                 if (choice == 1) step = 0; else
-                if (choice == 0) continue; else
+                if (choice == 2) continue; else
                 printf("Incorrect input. Try again.\n");
 
                 break;
@@ -294,7 +296,7 @@ int main(void) {
                 res = linked_list_sort(linked_list, SORT_DESC);
                 if (res == 1) {
                     printf("Something went wrong during sorting linked list. Try again latter.\n");
-                    exit(EXIT_FAILURE);
+                    // exit(EXIT_FAILURE);
                 }
 
                 printf("Linked list was successfully sorted.\n");
@@ -311,7 +313,69 @@ int main(void) {
                 }
 
                 if (choice == 1) step = 0; else
-                if (choice == 0) continue; else
+                if (choice == 2) continue; else
+                printf("Incorrect input. Try again.\n");
+
+                break;
+            
+            case 50:
+                if (CLEAR) system("clear"); else printf("---------------------------------------------------------\n");
+
+                printf("\nEnter pivot to delete: ");
+                if (scanf("%d", &input_value) != 1) {
+                    printf("Invalid input.\n");
+                    while (getchar() != '\n');
+                    continue;
+                }
+
+                res = linked_list_special_function(linked_list, input_value);
+                if (res == 1) {
+                    printf("Something went wrong during deleting values. Try again latter.\n");
+                    // exit(EXIT_FAILURE);
+                }
+
+                printf("Menu:\n");
+                printf("1. View linked list.\n");
+                printf("2. Go back to main menu.\n");
+
+                if (scanf("%d", &choice) != 1) {
+                    while (getchar() != '\n'); 
+                    continue;
+                }
+
+                if (choice == 1) step = 10; else
+                if (choice == 2) step = 0; else
+                printf("Incorrect input. Try again.\n");
+
+                break;
+
+            case 70:
+                if (CLEAR) system("clear"); else printf("---------------------------------------------------------\n");
+                
+                printf("\nEnter value to search: ");
+                if (scanf("%d", &input_value) != 1) {
+                    printf("Invalid input.\n");
+                    while (getchar() != '\n');
+                    continue;
+                }
+
+                res = linked_list_search_by_value(linked_list, input_value);
+                if (res == 1) {
+                    printf("Something went wrong during searching the element with value.\n");
+                    // exit(EXIT_FAILURE);
+                }
+
+                printf("Menu:\n");
+                printf("1. Search by value.\n");
+                printf("2. Go back to main menu.\n");
+
+                if (scanf("%d", &choice) != 1) {
+                    while (getchar() != '\n'); 
+                    continue;
+                }
+
+                if (choice == 1) step = 70; else
+                if (choice == 2) step = 0; else
                 printf("Incorrect input. Try again.\n");
 
                 break;

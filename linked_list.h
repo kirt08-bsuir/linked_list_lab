@@ -23,7 +23,11 @@ LinkedList* linked_list_initialize();
 int linked_list_insert_to_head(LinkedList *linked_list, const int value);
 int linked_list_insert_to_tail(LinkedList *linked_list, const int value);
 
+int linked_list_search_by_value(LinkedList *linked_list, const int value);
+
 int linked_list_delete_by_value(LinkedList *linked_list, const int value);
+
+int linked_list_special_function(LinkedList *linked_list, const int value);
 
 int linked_list_sort(LinkedList *linked_list, SortOrder order);
 
